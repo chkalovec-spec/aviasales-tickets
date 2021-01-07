@@ -1,0 +1,35 @@
+#more-arrows {
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 75px;
+  height: 65px;
+
+  &:hover {
+    cursor: pointer;
+    polygon {
+      fill: #2196f3;
+      transition: all 0.2s ease-out;
+
+      &.arrow-bottom {
+        transform: translateY(-18px);
+      }
+
+      &.arrow-top {
+        transform: translateY(18px);
+      }
+    }
+  }
+}
+
+polygon {
+  fill: #2196f3;
+  transition: all 0.2s ease-out;
+
+  &.arrow-middle {
+    opacity: 0.75;
+  }
+
+  &.arrow-top {
+    opacity: 0.5;
+  }
+}

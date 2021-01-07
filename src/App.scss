@@ -1,0 +1,19 @@
+@import 'styles/fonts/index.scss';
+
+body {
+  background-color: #f3f7fa;
+}
+
+.app-wrapper {
+  max-width: 768px;
+  margin: 0 auto;
+  display: flex;
+  padding-bottom: 20px;
+}
+
+.content-block {
+  margin-left: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}

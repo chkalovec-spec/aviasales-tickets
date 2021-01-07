@@ -1,0 +1,26 @@
+//TODO проверить неисполльлзуемые шрифты
+@font-face {
+  font-family: 'Open Sans Regular';
+  src: url('OpenSans-Regular.eot');
+  src: url('OpenSans-Regular.eot?#iefix') format('embedded-opentype'),
+    url('OpenSans-Regular.woff') format('woff'), url('OpenSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Open Sans Bold';
+  src: url('OpenSans-Bold.eot');
+  src: url('OpenSans-Bold.eot?#iefix') format('embedded-opentype'),
+    url('OpenSans-Bold.woff') format('woff'), url('OpenSans-Bold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans Semibold';
+  src: url('OpenSans-SemiBold.eot');
+  src: url('OpenSans-SemiBold.eot?#iefix') format('embedded-opentype'),
+    url('OpenSans-SemiBold.woff') format('woff'), url('OpenSans-SemiBold.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
