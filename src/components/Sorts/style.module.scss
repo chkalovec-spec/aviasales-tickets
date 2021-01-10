@@ -1,0 +1,42 @@
+@import '../../styles/variables.scss';
+@import '../../styles/common.scss';
+
+.sorts {
+  @extend .borderBox;
+
+  margin-bottom: $spacing * 4;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.item {
+  padding: $spacing * 3 0;
+
+  flex-basis: 50%;
+
+  text-align: center;
+  font-style: normal;
+  font-weight: 600;
+  font-size: $font-size-sm;
+  line-height: $line-height-lg;
+  letter-spacing: $letter-spacing-md;
+  text-transform: uppercase;
+
+  color: $color-black;
+
+  cursor: pointer;
+
+  &:hover:not(.activeItem) {
+    background: $color-primary;
+    color: $color-white;
+  }
+}
+
+.activeItem {
+  @extend .item;
+  background: $color-primary;
+  color: $color-white;
+}

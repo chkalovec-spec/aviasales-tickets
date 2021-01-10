@@ -1,0 +1,37 @@
+@import 'styles/fonts/index.scss';
+@import 'styles/variables.scss';
+
+body {
+  background-color: $color-bgBody;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+.wrapper {
+  max-width: 768px;
+
+  margin: 0 auto;
+  padding-bottom: $spacing * 4;
+
+  display: flex;
+}
+
+.leftSide {
+  margin-right: $spacing * 4;
+}
+
+.content {
+  flex: 1 1 auto;
+
+  display: flex;
+  flex-direction: column;
+}

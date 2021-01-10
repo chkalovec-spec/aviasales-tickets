@@ -1,10 +1,10 @@
 import logo from 'assets/logo.png'
-import './style.scss'
+import classes from './style.module.scss'
 
 export const Header: React.FC = () => {
   return (
     <>
-      <header className='header'>
+      <header className={classes.header}>
         <img src={logo} alt='logo' />
       </header>
     </>

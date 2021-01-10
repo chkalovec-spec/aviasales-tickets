@@ -1,9 +1,9 @@
-import './style.scss'
+import classes from './style.module.scss'
 
 export const Loader: React.FC = () => {
   return (
     <>
-      <div className='lds-hourglass'></div>
+      <div className={classes.loader}></div>
     </>
   )
 }

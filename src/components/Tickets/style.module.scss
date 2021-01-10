@@ -1,0 +1,59 @@
+@import '../../styles/variables.scss';
+@import '../../styles/common.scss';
+
+.tickets {
+  padding: $spacing * 4;
+  margin-bottom: $spacing * 4;
+
+  @extend .borderBox;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.header {
+  margin-bottom: $spacing * 4;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.price {
+  font-size: $font-size-lg;
+  line-height: $line-height-xl;
+  font-style: normal;
+  font-weight: 600;
+
+  color: $color-primary;
+}
+
+.segment {
+  margin-bottom: $spacing * 2;
+
+  display: flex;
+  justify-content: space-between;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.title {
+  font-size: $font-size-sm;
+  line-height: $line-height-md;
+  letter-spacing: $letter-spacing-md;
+  font-style: normal;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  color: $color-gray;
+}
+.subTitle {
+  font-size: $font-size-md;
+  line-height: $line-height-lg;
+  font-style: normal;
+  font-weight: 600;
+
+  color: $color-black;
+}

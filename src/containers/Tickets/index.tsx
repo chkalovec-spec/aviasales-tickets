@@ -1,8 +1,11 @@
+import { useEffect, useState, useMemo } from 'react'
 import * as _ from 'lodash'
+
 import { useTickets } from 'hooks/useTickets'
-import { Tickets } from 'components/Tickets'
-import { useEffect, useState, useCallback, useMemo } from 'react'
+
 import { MAX_COUNT_TICKETS } from 'constants/tickets'
+
+import { Tickets } from 'components/Tickets'
 import { Loader } from 'components/Loader'
 import { BottomArrow } from 'components/BottomArrow'
 
@@ -10,28 +13,21 @@ export const TicketsContainer: React.FC = () => {
   const { tickets } = useTickets()
   const [maxCount, setMaxCount] = useState<number>(MAX_COUNT_TICKETS)
 
-  const throttledMethod = useMemo(
+  const onscrollHandler = useMemo(
     () =>
-      // _.throttle(({ target: { scrollingElement: { scrollHeight, clientHeight } } }) => {
-      _.throttle(e => {
-        console.log(e)
-        // console.log(scrollHeight)
-        // console.log(clientHeight)
-
-        // if (clientHeight <= scrollHeight + 956) {
-        //   console.log('tut')
-        //   maxCountHandler()
-        // }
-      }, 400),
+      _.throttle(() => {
+        const { scrollHeight, clientHeight, scrollTop } = document.documentElement
+        if (scrollTop === scrollHeight - clientHeight) {
+          maxCountHandler()
+        }
+      }, 300),
     []
   )
 
-  const onscrollHandler = useCallback(throttledMethod, [throttledMethod])
-
   useEffect(() => {
-    document.body.addEventListener('scroll', onscrollHandler)
+    document.addEventListener('scroll', onscrollHandler)
     return () => {
-      document.body.removeEventListener('scroll', onscrollHandler)
+      document.removeEventListener('scroll', onscrollHandler)
     }
   }, [onscrollHandler])
 

@@ -1,20 +1,24 @@
-#more-arrows {
-  margin: 0 auto;
-  margin-top: 20px;
+@import '../../styles/variables.scss';
+
+.arrow {
   width: 75px;
   height: 65px;
 
+  margin: 0 auto;
+  margin-top: $spacing * 5;
+
   &:hover {
     cursor: pointer;
+
     polygon {
-      fill: #2196f3;
+      fill: $color-primary;
       transition: all 0.2s ease-out;
 
-      &.arrow-bottom {
+      &.bottom {
         transform: translateY(-18px);
       }
 
-      &.arrow-top {
+      &.top {
         transform: translateY(18px);
       }
     }
@@ -22,14 +26,14 @@
 }
 
 polygon {
-  fill: #2196f3;
+  fill: $color-primary;
   transition: all 0.2s ease-out;
 
-  &.arrow-middle {
+  &.middle {
     opacity: 0.75;
   }
 
-  &.arrow-top {
+  &.top {
     opacity: 0.5;
   }
 }
