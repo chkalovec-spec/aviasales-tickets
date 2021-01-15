@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/aviasales-tickets/static/css/main.1b7923f0.chunk.css",
+    "main.js": "/aviasales-tickets/static/js/main.33cf5746.chunk.js",
+    "main.js.map": "/aviasales-tickets/static/js/main.33cf5746.chunk.js.map",
+    "runtime-main.js": "/aviasales-tickets/static/js/runtime-main.ad4d0c69.js",
+    "runtime-main.js.map": "/aviasales-tickets/static/js/runtime-main.ad4d0c69.js.map",
+    "static/js/2.0b51ea19.chunk.js": "/aviasales-tickets/static/js/2.0b51ea19.chunk.js",
+    "static/js/2.0b51ea19.chunk.js.map": "/aviasales-tickets/static/js/2.0b51ea19.chunk.js.map",
+    "index.html": "/aviasales-tickets/index.html",
+    "static/css/main.1b7923f0.chunk.css.map": "/aviasales-tickets/static/css/main.1b7923f0.chunk.css.map",
+    "static/js/2.0b51ea19.chunk.js.LICENSE.txt": "/aviasales-tickets/static/js/2.0b51ea19.chunk.js.LICENSE.txt",
+    "static/media/App.module.scss": "/aviasales-tickets/static/media/OpenSans-Regular.229564ca.woff",
+    "static/media/style.module.scss": "/aviasales-tickets/static/media/сheckbox-on.aa46f09d.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ad4d0c69.js",
+    "static/js/2.0b51ea19.chunk.js",
+    "static/css/main.1b7923f0.chunk.css",
+    "static/js/main.33cf5746.chunk.js"
+  ]
+}
