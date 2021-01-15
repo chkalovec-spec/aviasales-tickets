@@ -1,6 +1,6 @@
 # Aviasales Tickets
 
-This project is available [here](https://github.com/facebook/create-react-app).
+This project is available [here](https://chkalovec-spec.github.io/aviasales-tickets).
 
 ## Functionality
 
