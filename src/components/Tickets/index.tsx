@@ -1,50 +1,60 @@
 import React from 'react'
+
 import { Ticket } from 'types/tickets'
 import classes from './style.module.scss'
 
 type TicketsProps = {
   tickets: Ticket[]
+  animate: boolean
 }
 
-export const Tickets: React.FC<TicketsProps> = ({ tickets }) => {
+const Animate = (props: any) => {
   return (
     <>
-      {tickets.map(ticket => {
+      <div className={classes.animate}>{props.children}</div>
+    </>
+  )
+}
+
+export const Tickets: React.FC<TicketsProps> = ({ tickets, animate }) => {
+  return (
+    <>
+      {tickets.map(({ id, priceText, carrierLogo, segments }) => {
         return (
-          <div key={ticket.id} className={classes.tickets}>
-            <>
-              <div className={classes.header}>
-                <p className={classes.price}>{ticket.price}</p>
-                <div className={classes.logo}>
-                  <img src={ticket.carrierLogo} alt='logo' />
+          <Animate>
+            <div key={id} className={animate ? classes.animateTickets : classes.tickets}>
+              <>
+                <div className={classes.header}>
+                  <p className={classes.price}>{priceText}</p>
+                  <div className={classes.logo}>
+                    <img src={carrierLogo} alt='logo' />
+                  </div>
                 </div>
-              </div>
-              {ticket.segments.map(segment => {
-                return (
-                  <React.Fragment key={segment.id}>
-                    <div className={classes.segment}>
-                      <div className={classes.info}>
-                        <p
-                          className={classes.title}
-                        >{`${segment.origin} - ${segment.destination}`}</p>
-                        <p
-                          className={classes.subTitle}
-                        >{`${segment.sendDate} - ${segment.arrivalDate}`}</p>
-                      </div>
-                      <div className={classes.info}>
-                        <p className={classes.title}>В пути</p>
-                        <p className={classes.subTitle}>{segment.duration}</p>
-                      </div>
-                      <div className={classes.info}>
-                        <p className={classes.title}>{`Пересадки: ${segment.stops.length}`}</p>
-                        <p className={classes.subTitle}>{segment.stops.join(',')}</p>
-                      </div>
-                    </div>
-                  </React.Fragment>
-                )
-              })}
-            </>
-          </div>
+                {segments.map(
+                  ({ id, origin, destination, sendDate, arrivalDate, durationText, stops }) => {
+                    return (
+                      <React.Fragment key={id}>
+                        <div className={classes.segment}>
+                          <div className={classes.info}>
+                            <p className={classes.title}>{`${origin} - ${destination}`}</p>
+                            <p className={classes.subTitle}>{`${sendDate} - ${arrivalDate}`}</p>
+                          </div>
+                          <div className={classes.info}>
+                            <p className={classes.title}>В пути</p>
+                            <p className={classes.subTitle}>{durationText}</p>
+                          </div>
+                          <div className={classes.info}>
+                            <p className={classes.title}>{`Пересадки: ${stops.length}`}</p>
+                            <p className={classes.subTitle}>{stops.join(',')}</p>
+                          </div>
+                        </div>
+                      </React.Fragment>
+                    )
+                  }
+                )}
+              </>
+            </div>
+          </Animate>
         )
       })}
     </>

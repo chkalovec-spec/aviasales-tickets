@@ -1,31 +1,29 @@
-import { Filters } from 'components/Filters'
+import { useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { selectFilters } from 'store/filters/selectors'
+import { addFilter, removeFilter } from 'store/filters/actions'
+
 import { FILTERS_LIST, FILTERS_TITLE } from 'constants/filters'
-import { useCallback, useState } from 'react'
+import { Filters } from 'components/Filters'
 
 export const FiltersContainer: React.FC = () => {
   const title = FILTERS_TITLE
   const filters = FILTERS_LIST
 
-  const [activeFilters, setActiveFilters] = useState<string[]>([])
+  const activeFilters = useSelector(selectFilters)
+  const dispatch = useDispatch()
 
   const onChangeFilter = useCallback(
-    (id: string) => {
-      if (!activeFilters.includes(id)) {
-        setActiveFilters(prevFilters => {
-          return [...prevFilters, id]
-        })
-      } else {
-        setActiveFilters(activeFilters.filter(fId => fId !== id))
-      }
+    (value: string) => {
+      activeFilters.includes(value) ? dispatch(removeFilter(value)) : dispatch(addFilter(value))
     },
-    [activeFilters]
+    [activeFilters, dispatch]
   )
-
-  const propsForFilters = { title, filters, activeFilters, onChangeFilter }
 
   return (
     <>
-      <Filters {...propsForFilters} />
+      <Filters {...{ title, filters, activeFilters, onChangeFilter }} />
     </>
   )
 }

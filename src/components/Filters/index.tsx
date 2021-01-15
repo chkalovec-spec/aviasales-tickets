@@ -1,6 +1,5 @@
-import React from 'react'
-import classes from './style.module.scss'
 import { FiltersItem } from 'types/filters'
+import classes from './style.module.scss'
 
 type FiltersProps = {
   title: string
@@ -17,17 +16,17 @@ export const Filters: React.FC<FiltersProps> = props => {
       <div className={classes.filters}>
         <p className={classes.title}>{title}</p>
         <ul className={classes.items}>
-          {filters.map(filter => {
+          {filters.map(({ id, value, displayValue }) => {
             return (
-              <li key={filter.id} onClick={() => onChangeFilter(filter.id)}>
+              <li key={id} onClick={() => onChangeFilter(value)}>
                 <input
                   type='checkbox'
                   className={classes.realInput}
-                  checked={activeFilters.includes(filter.id)}
+                  checked={activeFilters.includes(value)}
                   readOnly
                 />
                 <span className={classes.fakeInput}></span>
-                {filter.displayValue}
+                {displayValue}
               </li>
             )
           })}

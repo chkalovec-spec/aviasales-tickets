@@ -1,42 +1,67 @@
-import { fetchSearchId, fetchTickets } from 'api'
-import { useState, useEffect } from 'react'
-import { Ticket } from './../../types/tickets'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { selectSearchId } from 'store/network/selectors'
+import { selectTickets } from 'store/tickets/selectors'
+import { selectFilters } from 'store/filters/selectors'
+import { selectSortBy } from 'store/sorts/selectors'
+
+import { loadSearchId } from 'store/network/actions'
+import { loadTickets } from 'store/tickets/actions'
+
+import { Ticket } from 'types/tickets'
 import { extractTicketsResp } from './utils'
+import { SortsValues } from 'constants/sorts'
+import { FiltersValues } from 'constants/filters'
 
 type useTicketsResp = {
   tickets: Ticket[]
 }
 
 export const useTickets = (): useTicketsResp => {
-  const [searchId, setSearchId] = useState('')
-  const [isFullLoading, setIsFullLoading] = useState<boolean>(false)
-  const [tickets, setTickets] = useState<Ticket[]>([])
+  const tickets = useSelector(selectTickets)
+  const searchId = useSelector(selectSearchId)
+  const filters = useSelector(selectFilters)
+  const sortBy = useSelector(selectSortBy)
+
+  const dispatch = useDispatch()
+
+  const [data, setData] = useState<Ticket[]>([])
 
   useEffect(() => {
-    const getSearchId = async () => {
-      const { searchId } = await fetchSearchId()
-      return setSearchId(searchId)
+    searchId ? dispatch(loadTickets()) : dispatch(loadSearchId())
+
+    if (tickets.length) {
+      setData(tickets.map(extractTicketsResp))
     }
-    getSearchId()
-  }, [])
+  }, [searchId, tickets, dispatch])
 
   useEffect(() => {
-    const getUsers = async () => {
-      try {
-        const { stop, tickets } = await fetchTickets(searchId)
-        if (stop) setIsFullLoading(true)
-        setTickets(prevTickets => {
-          const newTickets = tickets.map(extractTicketsResp)
-          return [...prevTickets, ...newTickets]
+    if (filters.includes(FiltersValues.ALL) || !filters.length) {
+      setData(tickets.map(extractTicketsResp))
+    } else {
+      setData(
+        tickets.map(extractTicketsResp).filter(t => {
+          return filters.includes(String(t.maxStops))
         })
-      } catch (e) {
-        getUsers()
-      }
+      )
     }
 
-    if (!isFullLoading && searchId) {
-      getUsers()
+    switch (sortBy) {
+      case SortsValues.CHEAPSET: {
+        return setData(prevTickets => {
+          return [...prevTickets.sort((prev, next) => prev.price - next.price)]
+        })
+      }
+      case SortsValues.FASTEST: {
+        return setData(prevTickets => {
+          return [...prevTickets.sort((prev, next) => prev.minDuration - next.minDuration)]
+        })
+      }
+      default:
+        break
     }
-  }, [isFullLoading, tickets, searchId])
-  return { tickets }
+  }, [filters, sortBy, tickets])
+
+  return { tickets: data }
 }

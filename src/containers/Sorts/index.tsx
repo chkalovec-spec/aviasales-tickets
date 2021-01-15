@@ -1,29 +1,28 @@
-import * as _ from 'lodash'
-import { Sorts } from 'components/Sorts'
+import { useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { selectSortBy } from 'store/sorts/selectors'
+import { setSortBy } from 'store/sorts/actions'
+
 import { SORTS_LIST } from 'constants/sorts'
-import { useCallback, useMemo, useState } from 'react'
+import { Sorts } from 'components/Sorts'
 
 export const SortContainer: React.FC = () => {
   const sortsItems = SORTS_LIST
-  const defaultActiveSortItem = useMemo((): string => {
-    return _.head(sortsItems)!.id
-  }, [sortsItems])
 
-  const [activeSortItem, setActiveSortItem] = useState<string>(defaultActiveSortItem)
+  const activeSortItem = useSelector(selectSortBy)
+  const dispatch = useDispatch()
 
-  const onChangeSortItem = useCallback((id: string): void => {
-    setActiveSortItem(id)
-  }, [])
-
-  const propsForSorts = {
-    sortsItems,
-    activeSortItem,
-    onChangeSortItem,
-  }
+  const onChangeSortItem = useCallback(
+    (value: string): void => {
+      if (activeSortItem !== value) dispatch(setSortBy(value))
+    },
+    [dispatch, activeSortItem]
+  )
 
   return (
     <>
-      <Sorts {...propsForSorts} />
+      <Sorts {...{ sortsItems, activeSortItem, onChangeSortItem }} />
     </>
   )
 }

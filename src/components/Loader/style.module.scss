@@ -5,7 +5,10 @@
   height: $spacing * 16;
 
   display: inline-block;
-  position: relative;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
 
   margin: 0 auto;
 }

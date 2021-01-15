@@ -1,7 +1,12 @@
-import { SortsItem } from './../types/sorts'
 import { generate } from 'shortid'
+import { SortsItem } from './../types/sorts'
+
+export enum SortsValues {
+  CHEAPSET = 'cheapest',
+  FASTEST = 'fastest',
+}
 
 export const SORTS_LIST: SortsItem[] = [
-  { id: generate(), value: 'cheapest', displayValue: 'Самый дешёвый' },
-  { id: generate(), value: 'fastest', displayValue: 'Самый быстрый' },
+  { id: generate(), value: SortsValues.CHEAPSET, displayValue: 'Самый дешёвый' },
+  { id: generate(), value: SortsValues.FASTEST, displayValue: 'Самый быстрый' },
 ]

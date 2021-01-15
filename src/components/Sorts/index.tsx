@@ -11,16 +11,16 @@ export const Sorts: React.FC<SortsProps> = ({ sortsItems, activeSortItem, onChan
   return (
     <>
       <ul className={classes.sorts}>
-        {sortsItems.map(sort => {
+        {sortsItems.map(({ id, value, displayValue }) => {
           return (
             <li
-              key={sort.id}
-              className={sort.id === activeSortItem ? classes.activeItem : classes.item}
+              key={id}
+              className={value === activeSortItem ? classes.activeItem : classes.item}
               onClick={() => {
-                onChangeSortItem(sort.id)
+                onChangeSortItem(value)
               }}
             >
-              {sort.displayValue}
+              {displayValue}
             </li>
           )
         })}
